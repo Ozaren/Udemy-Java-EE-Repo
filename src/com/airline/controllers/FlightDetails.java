@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.ejb.EJB;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,20 +22,7 @@ import com.airline.service.FlightService;
 public class FlightDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@EJB
-	private FlightService fs1;
-	
-	@EJB
-	private FlightService fs2;
-	
-	@EJB
-	private FlightService fs3;
-	
-	@EJB
-	private FlightService fs4;
-	
-	@EJB
-	private FlightService fs5;
+	private FlightService fs = null;
 	
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -52,20 +42,25 @@ public class FlightDetails extends HttpServlet {
 		
 		view.println("The flight detail servlet has been called...");
 		
-		fs1.setFrom("London");
-		view.println(fs1.getFrom());
+		try {
+			Context context = new InitialContext();
+			
+			/**Lookup Format
+			 * java:global/%Context Root%/%Class Name%!%Fully Qualified Class name%
+			 */
+			Object fobj = context.lookup("java:global/ejb/FlightService!com.airline.service.FlightService");
+			
+			fs = (FlightService) fobj;
+		}
+		catch (NamingException e) {
+			System.out.println("Naming Exception has occured when trying to lookup the flight service EJB");
+			e.printStackTrace();
+		}
 		
-		fs2.setFrom("New York");
-		view.println(fs1.getFrom());
-		
-		fs3.setFrom("Gondor");
-		view.println(fs1.getFrom());
-		
-		fs4.setFrom("Rohan");
-		view.println(fs1.getFrom());
-		
-		fs5.setFrom("Mordor");
-		view.println(fs1.getFrom());
+		if(fs != null) {
+			view.println(fs.getFrom());
+			view.println(fs.getTo());
+		}
 	}
 	
 	/**
@@ -73,8 +68,6 @@ public class FlightDetails extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request , HttpServletResponse response) throws ServletException , IOException {
-		// TODO Auto-generated method stub
-		doGet(request , response);
+		
 	}
-	
 }
