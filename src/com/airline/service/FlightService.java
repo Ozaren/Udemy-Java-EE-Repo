@@ -3,6 +3,8 @@ package com.airline.service;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import com.sun.xml.ws.developer.Stateful;
+
 /**
  * Session Bean implementation class FlightService
  */
