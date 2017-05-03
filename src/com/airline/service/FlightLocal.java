@@ -1,5 +1,8 @@
 package com.airline.service;
 
+import javax.ejb.LocalBean;
+
+@LocalBean
 public interface FlightLocal {
 	int getId();
 	

@@ -1,13 +1,11 @@
 package com.airline.service;
 
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 /**
  * Session Bean implementation class FlightService
  */
 @Stateless
-@LocalBean
 public class FlightService implements FlightLocal {
 	private int	id			= 999999;
 	private int	price		= 400;
