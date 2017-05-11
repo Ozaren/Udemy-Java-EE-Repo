@@ -18,12 +18,18 @@ import com.airline.service.FlightLocal;
 @WebServlet("/FlightDetails")
 public class FlightDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	@EJB(beanName = "flight stateless")
-	private FlightLocal flightStateless = null;
-
-	@EJB(beanName = "flight statelful")
-	private FlightLocal flightStateful = null;
+	private FlightLocal flightStateless1 = null;
+	
+	@EJB(beanName = "flight stateless")
+	private FlightLocal flightStateless2 = null;
+	
+	@EJB(beanName = "flight stateful")
+	private FlightLocal flightStateful1 = null;
+	
+	@EJB(beanName = "flight stateful")
+	private FlightLocal flightStateful2 = null;
 	
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -42,8 +48,30 @@ public class FlightDetails extends HttpServlet {
 		PrintWriter view = response.getWriter();
 		
 		view.println("The flight detail servlet has been called...");
-		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless.getTo() , flightStateless.getFrom() , flightStateless.getAirplaneModel()));
-		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless.getTo() , flightStateful.getFrom() , flightStateful.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless1.getTo() , flightStateless1.getFrom() , flightStateless1.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless2.getTo() , flightStateless2.getFrom() , flightStateless2.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateful1.getTo() , flightStateful1.getFrom() , flightStateful1.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateful2.getTo() , flightStateful2.getFrom() , flightStateful2.getAirplaneModel()));
+		
+		flightStateless2.setFrom("paris");
+		flightStateless2.setTo("rome");
+		
+		view.println("----------------------------------------");
+		
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless1.getTo() , flightStateless1.getFrom() , flightStateless1.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless2.getTo() , flightStateless2.getFrom() , flightStateless2.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateful1.getTo() , flightStateful1.getFrom() , flightStateful1.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateful2.getTo() , flightStateful2.getFrom() , flightStateful2.getAirplaneModel()));
+		
+		flightStateful2.setFrom("paris 2");
+		flightStateful2.setTo("rome 2");
+		
+		view.println("----------------------------------------");
+		
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless1.getTo() , flightStateless1.getFrom() , flightStateless1.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless2.getTo() , flightStateless2.getFrom() , flightStateless2.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateful1.getTo() , flightStateful1.getFrom() , flightStateful1.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateful2.getTo() , flightStateful2.getFrom() , flightStateful2.getAirplaneModel()));
 	}
 	
 	/**
