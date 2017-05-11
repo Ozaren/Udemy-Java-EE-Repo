@@ -18,9 +18,12 @@ import com.airline.service.FlightLocal;
 @WebServlet("/FlightDetails")
 public class FlightDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
+	@EJB(beanName = "flight statelless")
+	private FlightLocal flightStateless = null;
+
 	@EJB(beanName = "flight statelful")
-	private FlightLocal flightLocal = null;
+	private FlightLocal flightStateful = null;
 	
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -39,7 +42,8 @@ public class FlightDetails extends HttpServlet {
 		PrintWriter view = response.getWriter();
 		
 		view.println("The flight detail servlet has been called...");
-		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightLocal.getTo() , flightLocal.getFrom() , flightLocal.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless.getTo() , flightStateless.getFrom() , flightStateless.getAirplaneModel()));
+		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless.getTo() , flightStateful.getFrom() , flightStateful.getAirplaneModel()));
 	}
 	
 	/**
