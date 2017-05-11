@@ -5,8 +5,8 @@ import javax.ejb.Stateless;
 /**
  * Session Bean implementation class FlightService
  */
-@Stateless
-public class FlightService implements FlightLocal , FlightRemote {
+@Stateless(name = "flight stateless")
+public class FlightServiceStatelessBean implements FlightLocal {
 	private int	id			= 999999;
 	private int	price		= 400;
 	private int	numOfSeats	= 250;
@@ -18,7 +18,7 @@ public class FlightService implements FlightLocal , FlightRemote {
 	/**
 	 * Default constructor.
 	 */
-	public FlightService() {
+	public FlightServiceStatelessBean() {
 		// TODO Auto-generated constructor stub
 	}
 	
