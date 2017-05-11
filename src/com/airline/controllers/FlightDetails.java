@@ -19,7 +19,7 @@ import com.airline.service.FlightLocal;
 public class FlightDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@EJB(beanName = "flight statelless")
+	@EJB(beanName = "flight stateless")
 	private FlightLocal flightStateless = null;
 
 	@EJB(beanName = "flight statelful")
