@@ -38,7 +38,7 @@ public class FlightDetails extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request , HttpServletResponse response) throws ServletException , IOException {
-		PrintWriter view = response.getWriter();
+		PrintWriter out = response.getWriter();
 		
 		try {
 			Context context = new InitialContext();
@@ -53,9 +53,9 @@ public class FlightDetails extends HttpServlet {
 			return;
 		}
 		
-		view.println("The flight detail servlet has been called...");
-		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless.getTo() , flightStateless.getFrom() , flightStateless.getAirplaneModel()));
-		view.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateful.getTo() , flightStateful.getFrom() , flightStateful.getAirplaneModel()));
+		out.println("The flight detail servlet has been called...");
+		out.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateless.getTo() , flightStateless.getFrom() , flightStateless.getAirplaneModel()));
+		out.println(String.format("\nFlight Details:\n\n%s\n%s\n%s" , flightStateful.getTo() , flightStateful.getFrom() , flightStateful.getAirplaneModel()));
 	}
 	
 	/**
