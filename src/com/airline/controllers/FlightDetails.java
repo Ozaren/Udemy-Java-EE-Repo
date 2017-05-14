@@ -3,7 +3,6 @@ package com.airline.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.ServletException;
